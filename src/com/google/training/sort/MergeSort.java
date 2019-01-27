@@ -3,22 +3,14 @@ package com.google.training.sort;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.training.data.DataCreator;
+
 public class MergeSort {
 
     public static void main(String[] args) {
 
-        List<Integer> list = new ArrayList<>();
-        list.add(34);
-        list.add(3);
-        list.add(97);
-        list.add(87);
-        list.add(-45);
-        list.add(67);
-        list.add(22);
-        list.add(54);
-
+        List<Integer> list = DataCreator.createUnsortedData();
         mergeSort(list, 0, list.size()-1);
-
         System.out.println(list);
 
     }
@@ -40,38 +32,38 @@ public class MergeSort {
 
     private static void merge(List<Integer> list, int start, int end) {
 
-        if(start>=end){
+        if( start >= end){
             return;
         }
 
         List<Integer> tempList = new ArrayList<>(list);
 
+        int tempIndex = start;
+        int i = start;
         int mid = (start+end)/2;
+        int j = mid+1;
 
-        int tempK = start;
-        int iList = start;
-        int jList = mid+1;
-
-        while( iList <= mid && jList <= end  ){
-            if( list.get(iList) < list.get(jList)){
-                tempList.set(tempK++, list.get(iList++));
+        while( i <= mid && j<=end ){
+            if( list.get(i) < list.get(j) ){
+                tempList.set(tempIndex++, list.get(i++));
             }else{
-                tempList.set(tempK++, list.get(jList++));
+                tempList.set(tempIndex++, list.get(j++));
             }
         }
 
-        while( iList <= mid ){
-            tempList.set(tempK++, list.get(iList++));
+        while( i<=mid ){
+            tempList.set(tempIndex++, list.get(i++));
         }
 
-
-        while( jList <= end ){
-            tempList.set(tempK++, list.get(jList++));
+        while( j<= end ){
+            tempList.set(tempIndex++, list.get(j++));
         }
 
-        for (int i = start; i <= end; i++) {
-            list.set(i, tempList.get(i));
+        for (int x=start;x<=end;x++){
+            list.set(x, tempList.get(x));
         }
 
     }
+
+
 }

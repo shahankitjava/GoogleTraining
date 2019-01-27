@@ -1,5 +1,7 @@
 package com.google.training.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class SortedBinaryTree {
@@ -15,6 +17,7 @@ public class SortedBinaryTree {
         Scanner scanner = new Scanner(System.in);
 
         do {
+
             System.out.print("Enter element :: ");
             int data = scanner.nextInt();
             System.out.println("Entered data => " + data);
@@ -25,14 +28,19 @@ public class SortedBinaryTree {
 
         } while (!scanner.next().equalsIgnoreCase("y"));
 
+        System.out.print("Inorder traversal :: ");
         printInOrderTraversal(rootNode);
         System.out.println();
+        System.out.print("Postorder traversal :: ");
         printPostOrderTraversal(rootNode);
         System.out.println();
+        System.out.print("Preorder traversal :: ");
         printPreOrderTraversal(rootNode);
+        System.out.println();
+        System.out.print("LevelOrder traversal :: ");
+        printLevelOrderTraversal( new LinkedList<>());
 
     }
-
 
 
     private Node insertNode(Node currentNode, int data) {
@@ -79,6 +87,23 @@ public class SortedBinaryTree {
         printPostOrderTraversal(node.getLeftNode());
         printPostOrderTraversal(node.getRightNode());
         System.out.print(" "+node.getData());
+    }
+
+    private void printLevelOrderTraversal(Queue<Node> queue) {
+
+        if(rootNode == null) {
+            return;
+        }
+        queue.add(rootNode);
+
+        while( !queue.isEmpty() ){
+            Node node = queue.remove();
+            System.out.print(" "+node.getData());
+            if( node.getLeftNode()!=null ) queue.add(node.getLeftNode());
+            if( node.getRightNode()!=null ) queue.add(node.getRightNode());
+        }
+
+
     }
 
 }

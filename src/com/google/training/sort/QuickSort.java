@@ -1,26 +1,14 @@
 package com.google.training.sort;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import com.google.training.data.DataCreator;
 
 public class QuickSort {
 
     public static void main(String[] args) {
-        List<Integer> integerList = new ArrayList<>();
-        integerList.add(17);
-        integerList.add(41);
-        integerList.add(5);
-        integerList.add(22);
-        integerList.add(54);
-        integerList.add(6);
-        integerList.add(29);
-        integerList.add(3);
-        integerList.add(13);
-        integerList.add(1);
-        integerList.add(52);
-
+        List<Integer> integerList = DataCreator.createUnsortedData();
         quickSort(integerList, 0,integerList.size()-1);
-
         System.out.println(integerList);
 
     }
