@@ -8,7 +8,7 @@ public class DataCreator {
 
    public static List<Integer> createUnsortedData(){
        List<Integer> integerList = new ArrayList<>();
-       for (int i = 0; i < 100000; i++) {
+       for (int i = 0; i < 10; i++) {
            integerList.add(i);
        }
        Collections.shuffle(integerList);
